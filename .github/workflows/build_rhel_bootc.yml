@@ -18,9 +18,9 @@ jobs:
       - name: Log in to the RHT terms based registry
         uses: redhat-actions/podman-login@v1
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: registry.redhat.io
+          username: ${{ vars.RHT_REG_SVCUSER }}
+          password: ${{ secrets.RHT_REG_SVCPASS }}
 
       - name: Buildah Action
         id: build-image
@@ -29,14 +29,14 @@ jobs:
           image: ${{ env.IMAGE_NAME }}
           tags: latest ${{ github.sha }}
           containerfiles: |
-            ./redhat/Containerfile
+            ./rhel/Containerfile
 
       - name: Log in to the GitHub Container registry
         uses: redhat-actions/podman-login@v1
         with:
-          registry: registry.redhat.io
-          username: ${{ vars.RHT_REG_SVCUSER }}
-          password: ${{ secrets.RHT_REG_SVCPASS }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to GitHub Container Repository
         id: push-to-ghcr
