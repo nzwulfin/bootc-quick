@@ -1,8 +1,8 @@
 name: Build F40 bootc image with GHA
 on:
-  - push:
-      paths:
-        - fedora/**
+  push:
+    paths:
+      - 'fedora/**'
 
 jobs:
   build:

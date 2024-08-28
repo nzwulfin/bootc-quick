@@ -1,8 +1,8 @@
 name: Build RHEL bootc image with GHA
 on:
-  - push:
-      paths:
-        - redhat/**
+  push:
+    paths:
+      - 'rhel/**'
 
 jobs:
   build:
