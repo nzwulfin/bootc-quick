@@ -9,7 +9,7 @@ jobs:
     name: Build image
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: bootc-quick
+      IMAGE_NAME: f40-bootc-quick
       REGISTRY: ghcr.io/nzwulfin
     steps:
       - name: Clone the repository
