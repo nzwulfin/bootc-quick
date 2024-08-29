@@ -1,4 +1,4 @@
-#build trigger 1
+#build trigger 2
 FROM quay.io/fedora/fedora-bootc:40
 RUN dnf -y install mkpasswd 
 RUN pass=$(mkpasswd --method=SHA-512 --rounds=4096 redhat) && useradd -m -G wheel bootc-user -p $pass

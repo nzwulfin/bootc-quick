@@ -8,6 +8,8 @@ jobs:
   build:
     name: Build image
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     env:
       IMAGE_NAME: f40-bootc-quick
       REGISTRY: ghcr.io/nzwulfin
@@ -49,4 +51,4 @@ jobs:
         env:
           TAGS: ${{ steps.build-image.outputs.tags }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
-        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+        run: cosign sign --yes ${{ env.REGISTRY }}@${{ steps.build-and-push.outputs.digest }}
