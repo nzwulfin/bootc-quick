@@ -8,22 +8,12 @@ jobs:
   build:
     name: Build image
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      packages: write
-      contents: read
     env:
       IMAGE_NAME: f40-bootc-quick
       REGISTRY: ghcr.io/nzwulfin
     steps:
       - name: Clone the repository
         uses: actions/checkout@v2
-
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses:  sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20 # v3.5.0
-        with:
-          cosign-release: 'v2.2.3'
 
       - name: Buildah Action
         id: build-image
@@ -48,9 +38,3 @@ jobs:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
           registry: ${{ env.REGISTRY }}
-
-      - name: Sign the published image
-        env:
-          TAGS: ${{ steps.build-image.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
-        run: cosign sign --yes ${{ env.REGISTRY }}@${{ steps.build-and-push.outputs.digest }}
