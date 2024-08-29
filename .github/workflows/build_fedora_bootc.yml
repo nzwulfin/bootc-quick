@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
+      packages: write
+      contents: read
     env:
       IMAGE_NAME: f40-bootc-quick
       REGISTRY: ghcr.io/nzwulfin
