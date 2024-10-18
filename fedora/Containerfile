@@ -1,7 +1,7 @@
 #build trigger 3
 #FROM quay.io/fedora/fedora-bootc:40
-FROM quay.io/centos-bootc/centos-bootc:c10s
-RUN dnf config-manager --set-enabled crb && dnf -y install epel-release
+FROM quay.io/centos-bootc/centos-bootc:c9s
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 RUN dnf -y install mkpasswd neofetch 
 RUN pass=$(mkpasswd --method=SHA-512 --rounds=4096 redhat) && useradd -m -G wheel bootc-user -p $pass
 RUN echo "%wheel        ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/wheel-sudo
