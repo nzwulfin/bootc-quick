@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get podman
-        run: sudo dnf -y install podman
+        run: dnf -y install --disablerepo=* --enablerepo=ubi-8-appstream-rpms --enablerepo=ubi-8-baseos-rpms podman
 
       - name: Log in to the RHT terms based registry
         uses: redhat-actions/podman-login@v1
