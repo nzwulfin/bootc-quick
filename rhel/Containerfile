@@ -1,4 +1,4 @@
-#build trigger 3
+#build trigger 7
 FROM registry.redhat.io/rhel9/rhel-bootc
 RUN dnf -y install mkpasswd
 RUN pass=$(mkpasswd --method=SHA-512 --rounds=4096 redhat) && useradd -m -G wheel bootc-user -p $pass
