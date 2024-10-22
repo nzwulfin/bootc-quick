@@ -17,6 +17,9 @@ jobs:
       - name: Clone the repository
         uses: actions/checkout@v2
 
+      - name: Get podman
+        run: sudo dnf -y install podman
+
       - name: Log in to the RHT terms based registry
         uses: redhat-actions/podman-login@v1
         with:
