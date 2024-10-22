@@ -8,6 +8,8 @@ jobs:
   build:
     name: Build image
     runs-on: ubuntu-latest
+    container:
+      image: registry.access.redhat.com/ubi9/ubi
     env:
       IMAGE_NAME: rhel9-bootc-quick
       REGISTRY: ghcr.io/nzwulfin
